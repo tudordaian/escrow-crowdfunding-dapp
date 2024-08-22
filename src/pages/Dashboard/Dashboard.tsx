@@ -17,7 +17,6 @@ export const Dashboard = () => {
     }, []);
 
     return (
-        // requireAuth = true??
         <AuthRedirectWrapper>
             <h1 className='text-4xl font-bold text-center my-4'>Dashboard</h1>
             {abi && <TokenTransferForm abi={abi}/>}

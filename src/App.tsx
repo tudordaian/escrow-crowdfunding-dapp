@@ -22,7 +22,6 @@ function App() {
                 }}
             >
                 <Layout>
-
                     <TransactionsToastList />
                     <SignTransactionsModals />
                     <Routes>

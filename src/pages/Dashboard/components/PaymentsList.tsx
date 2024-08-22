@@ -8,10 +8,12 @@ import {
     SmartContractTransactionsFactory,
     TransactionsFactoryConfig
 } from "@multiversx/sdk-core/out";
-import {ContractAddressEnum, WalletAddressEnum} from "../../../localConstants/addresses";
+import {ContractAddressEnum} from "../../../localConstants/addresses";
 import {sendTransactions} from "@multiversx/sdk-dapp/services";
 
 import {useGetActiveTransactionsStatus} from "@multiversx/sdk-dapp/hooks";
+import {useGetAccount} from "@multiversx/sdk-dapp/hooks/account/useGetAccount";
+import {formatAmount} from "@multiversx/sdk-dapp/utils";
 
 interface Offer {
     id: string;
@@ -20,25 +22,20 @@ interface Offer {
     creator_address: string;
 }
 
-const convertDenominatedValue = (value: string): string => {
-    try {
-        const bigIntValue = BigInt(value);
-        const humanReadableValue = Number(bigIntValue) / 1e18;
-        return humanReadableValue.toString();
-    } catch (error) {
-        console.error("Invalid BigInt value:", value);
-        return "0";
-    }
-};
 
 export const PaymentList = ({abi}: { abi: AbiRegistry }) => {
+    const {address} = useGetAccount();
     const [createdOffers, setCreatedOffers] = useState<Offer[]>([]);
     const [queryRun, setQueryRun] = useState(false);
     const {success} = useGetActiveTransactionsStatus();
 
     useEffect(() => {
+        getCreatedOffers();
+    }, []);
+
+    useEffect(() => {
         if (success) {
-            getCreatedOffers()
+            getCreatedOffers();
         }
     }, [success]);
 
@@ -55,7 +52,7 @@ export const PaymentList = ({abi}: { abi: AbiRegistry }) => {
             contract: ContractAddressEnum.escrow,
             function: "getCreatedOffers",
             arguments: [
-                WalletAddressEnum.myWallet
+                address
             ],
         });
         const response = await queryController.runQuery(query);
@@ -65,13 +62,14 @@ export const PaymentList = ({abi}: { abi: AbiRegistry }) => {
         const parsedOffers = createdOffers.map((offer: any) => ({
             id: offer[0],
             token_identifier: offer[1].offered_payment.token_identifier,
-            amount: convertDenominatedValue(offer[1].offered_payment.amount.toString()),
+            amount: offer[1].offered_payment.amount.toString(),
             creator_address: offer[1].accepted_address
         }));
 
         setCreatedOffers(parsedOffers);
         setQueryRun(true);
     }
+
 
     const cancelOffer = async (offerId: string) => {
         const factoryConfig = new TransactionsFactoryConfig({chainID: "D"});
@@ -82,7 +80,7 @@ export const PaymentList = ({abi}: { abi: AbiRegistry }) => {
 
         let args = [offerId];
         const tx = factory.createTransactionForExecute({
-            sender: Address.fromBech32(WalletAddressEnum.myWallet),
+            sender: Address.fromBech32(address),
             contract: Address.fromBech32(ContractAddressEnum.escrow),
             function: "cancelOffer",
             gasLimit: 30000000n,
@@ -127,7 +125,7 @@ export const PaymentList = ({abi}: { abi: AbiRegistry }) => {
                         <tr key={offer.id}>
                             <td className='px-6 py-4 whitespace-nowrap'>{offer.id.toString()}</td>
                             <td className='px-6 py-4 whitespace-nowrap'>{offer.token_identifier.toString()}</td>
-                            <td className='px-6 py-4 whitespace-nowrap'>{offer.amount.toString()}</td>
+                            <td className='px-6 py-4 whitespace-nowrap'>{formatAmount({input: offer.amount})}</td>
                             <td className='px-6 py-4 whitespace-nowrap'>{offer.creator_address.toString()}</td>
                             <td className='px-6 py-4 whitespace-nowrap'>
                                 <button onClick={() => cancelOffer(offer.id)}
