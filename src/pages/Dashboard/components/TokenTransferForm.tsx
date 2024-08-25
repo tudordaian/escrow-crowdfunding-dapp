@@ -9,7 +9,7 @@ import {ProposedOffer} from "./ProposedOffer.tsx";
 import {WantedOffer} from "./WantedOffer.tsx";
 import {DestinationAddress} from "./DestinationAddress.tsx";
 
-export const TokenTransferForm = ({ abi }: { abi: any }) => {``
+export const TokenTransferForm = ({ abi }: { abi: any }) => {
     const {address} = useGetAccount();
     const { tokens, offeredToken, setOfferedToken, wantedToken, setWantedToken } = useFetchTokens(address);
     const [offeredAmount, setOfferedAmount] = useState('');
