@@ -3,8 +3,8 @@ import {DappProvider} from "@multiversx/sdk-dapp/wrappers";
 
 import {EnvironmentsEnum} from '@multiversx/sdk-dapp/types';
 import {RouteNamesEnum} from "./localConstants/routes";
-import {Unlock} from './pages/Unlock';
-import {routes} from './routes/routes';
+import {Unlock} from './pages';
+import {routes} from './routes';
 import './App.css'
 import {Layout} from "./Layout/Layout.tsx";
 import {SignTransactionsModals, TransactionsToastList } from '@multiversx/sdk-dapp/UI';

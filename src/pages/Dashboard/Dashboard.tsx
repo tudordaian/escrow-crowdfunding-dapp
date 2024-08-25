@@ -1,26 +1,27 @@
 import { AuthRedirectWrapper } from "../../wrappers/AuthRedirectWarapper";
 import {TokenTransferForm} from "./components/TokenTransferForm.tsx";
-import {PaymentList} from "./components/PaymentsList.tsx";
-import {useEffect, useState} from "react";
-import {AbiRegistry} from "@multiversx/sdk-core/out";
+import {OutgoingOffers} from "./components/OutgoingOffers.tsx";
+import {IncomingOffers} from "./components/IncomingOffers.tsx";
+import {useGetActiveTransactionsStatus} from "@multiversx/sdk-dapp/hooks";
+import {useFetchAbi} from "./hooks";
 
 export const Dashboard = () => {
-    const [abi, setAbi] = useState<AbiRegistry>();
-    useEffect(() => {
-        const fetchAbi = async () => {
-            const response = await fetch("escrow.abi.json");
-            const abiJson = await response.json();
-            setAbi(AbiRegistry.create(abiJson));
-        };
-
-        fetchAbi();
-    }, []);
-
+    const {success} = useGetActiveTransactionsStatus();
+    const abi = useFetchAbi("escrow.abi.json");
     return (
         <AuthRedirectWrapper>
-            <h1 className='text-4xl font-bold text-center my-4'>Dashboard</h1>
-            {abi && <TokenTransferForm abi={abi}/>}
-            {abi && <PaymentList abi={abi} />}
+
+            {abi && <TokenTransferForm abi={abi} />}
+            {abi && (
+                <div className='p-4'>
+                    <OutgoingOffers success={success} abi={abi} />
+                </div>
+            )}
+            {abi && (
+                <div className='p-4'>
+                    <IncomingOffers success={success} abi={abi} />
+                </div>
+            )}
         </AuthRedirectWrapper>
     );
 }
