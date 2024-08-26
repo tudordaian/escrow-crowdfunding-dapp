@@ -61,13 +61,10 @@ export const IncomingOffers = ({ success, abi }: TxProps) => {
     }
 
     return (
-        <div className='flex justify-center items-center '>
-            <div className='flex flex-col p-6 items-center justify-center gap-4 rounded-xl bg-[#f6f8fa] shadow-xl'>
-                <h2 className='text-2xl'>Incoming Offers</h2>
-                <button onClick={getIncomingOffers} className='p-2 bg-blue-500 text-white rounded hover:bg-blue-700'>
-                    Refresh Incoming Offers
-                </button>
-                <IncomingOffersTable wantedOffers={wantedOffers} acceptOffer={acceptOffer}/>
+        <div className='flex justify-center items-center my-4'>
+            <div className='flex flex-col py-2 items-center justify-center gap-4 rounded-3xl bg-[#f6f8fa] shadow-xl max-w-'>
+                <h2 className='text-2xl my-2 mx-4'>Incoming Offers</h2>
+                <IncomingOffersTable wantedOffers={wantedOffers} acceptOffer={acceptOffer} getIncomingOffers={getIncomingOffers}/>
             </div>
         </div>
     );

@@ -85,7 +85,8 @@ export const TokenTransferForm = ({ abi }: { abi: any }) => {
                     destinationAddress={destinationAddress}
                     setDestinationAddress={setDestinationAddress}
                 />
-                <button type="submit" className='p-2 bg-blue-500 text-white rounded hover:bg-blue-700 w-full mt-4'>
+                <button type="submit"
+                        className='p-2 bg-gray-200 font- text-gray-600 rounded-3xl hover:rounded-xl hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer w-full'>
                     Submit offer
                 </button>
             </form>

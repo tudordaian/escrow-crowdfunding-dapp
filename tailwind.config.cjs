@@ -4,7 +4,8 @@ module.exports = {
     theme: {
       extend: {
         fontFamily: {
-          sans: ['"Inter"', 'sans-serif']
+          sans: ['"Inter"', 'sans-serif'],
+          exo_2: ['Exo 2', 'sans-serif']
         }
       },
       backgroundImage: {
@@ -14,4 +15,3 @@ module.exports = {
     },
     plugins: []
   };
-  

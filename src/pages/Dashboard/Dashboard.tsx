@@ -9,8 +9,8 @@ export const Dashboard = () => {
     const {success} = useGetActiveTransactionsStatus();
     const abi = useFetchAbi("escrow.abi.json");
     return (
+        <div>
         <AuthRedirectWrapper>
-
             {abi && <TokenTransferForm abi={abi} />}
             {abi && (
                 <div className='p-4'>
@@ -23,5 +23,7 @@ export const Dashboard = () => {
                 </div>
             )}
         </AuthRedirectWrapper>
+
+        </div>
     );
 }
