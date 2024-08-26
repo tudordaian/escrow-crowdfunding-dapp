@@ -12,8 +12,8 @@ export const Dummy = () => {
         <AuthRedirectWrapper>
             <div className='flex justify-center items-center p-4'>
                 <div className='flex flex-col p-6 items-center justify-center gap-4 rounded-xl bg-[#f6f8fa]'>
-                    <div className='text-lg'>Dummy Page</div>
-                    <button onClick={handleDashboard} className='p-2 bg-blue-500 text-white rounded mb-4 hover:bg-blue-700'>
+                    <div className='text-3xl'>Dummy Page</div>
+                    <button onClick={handleDashboard} className='p-2 text-xl text-gray-600 bg-gray-200 rounded-3xl hover:rounded-xl hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer'>
                         Dashboard
                     </button>
                 </div>

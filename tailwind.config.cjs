@@ -5,7 +5,7 @@ module.exports = {
       extend: {
         fontFamily: {
           sans: ['"Inter"', 'sans-serif'],
-          exo_2: ['Exo 2', 'sans-serif']
+          'ubuntu': ['Ubuntu', 'sans-serif']
         }
       },
       backgroundImage: {

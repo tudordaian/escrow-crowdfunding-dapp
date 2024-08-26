@@ -25,13 +25,13 @@ export const IncomingOffersTable = ({wantedOffers, acceptOffer, getIncomingOffer
                 <table className='min-w-full divide-y divide-gray-200 my-4'>
                     <thead className='bg-gray-50 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
                     <tr>
-                        <th className='px-5'>ID</th>
-                        <th className='px-5'>Earned token</th>
-                        <th className='px-5'>Earned amount</th>
-                        <th className='px-5'>Destination Address</th>
-                        <th className='px-5'>Paid token</th>
-                        <th className='px-5'>Paid amount</th>
-                        <th className='px-5'>Actions</th>
+                        <th className='px-5 text-sm'>ID</th>
+                        <th className='px-5 text-sm'>Earned token</th>
+                        <th className='px-5 text-sm'>Earned amount</th>
+                        <th className='px-5 text-sm'>Destination Address</th>
+                        <th className='px-5 text-sm'>Paid token</th>
+                        <th className='px-5 text-sm'>Paid amount</th>
+                        <th className='px-5 text-sm'>Actions</th>
                     </tr>
                     </thead>
                     <tbody className='bg-white divide-y divide-gray-200'>

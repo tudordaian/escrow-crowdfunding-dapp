@@ -25,13 +25,13 @@ export const OutgoingOffersTable = ({createdOffers, cancelOffer, getCreatedOffer
                 <table className='min-w-full divide-y divide-gray-200 my-5'>
                     <thead className='bg-gray-50'>
                     <tr className='px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
-                        <th className='px-4'>ID</th>
-                        <th className='px-4'>Offered token</th>
-                        <th className='px-4'>Offered amount</th>
-                        <th className='px-4'>Destination Address</th>
-                        <th className='px-4'>Wanted token</th>
-                        <th className='px-4'>Wanted amount</th>
-                        <th className='px-4'>Actions</th>
+                        <th className='px-4 text-sm'>ID</th>
+                        <th className='px-4 text-sm'>Offered token</th>
+                        <th className='px-4 text-sm'>Offered amount</th>
+                        <th className='px-4 text-sm'>Destination Address</th>
+                        <th className='px-4 text-sm'>Wanted token</th>
+                        <th className='px-4 text-sm'>Wanted amount</th>
+                        <th className='px-4 text-sm'>Actions</th>
                     </tr>
                     </thead>
                     <tbody className='bg-white divide-y divide-gray-200 px-0'>

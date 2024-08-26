@@ -7,7 +7,7 @@ export const ProposedOffer: FC<ProposedOfferProps> = ({ tokens, offeredToken, se
             <div className='flex items-center gap-2'>
                 <label htmlFor="token" className='text-lg pr-2'>Offered token:</label>
                 <select id="token" value={offeredToken} onChange={(e) => setOfferedToken(e.target.value)}
-                        className='p-2 text-gray-600 rounded-3xl hover:rounded-xl hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer'>
+                        className='p-2 shadow-sm text-gray-600 rounded-3xl hover:rounded-xl hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer'>
                     {tokens.map((token, index) => (
                         <option key={index} value={token}>
                             {token}
@@ -29,7 +29,7 @@ export const ProposedOffer: FC<ProposedOfferProps> = ({ tokens, offeredToken, se
                     }}
                     step="any"
                     min={0}
-                    className='p-2 border rounded'
+                    className='p-2 border rounded shadow-sm'
                 />
             </div>
         </div>

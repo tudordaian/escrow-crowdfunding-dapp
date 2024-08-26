@@ -64,24 +64,24 @@ export const Nav = () => {
         <header
             className='flex flex-row align-center justify-between pl-8 pr-8 pt-8 bg-[#f6f8fa] sticky top-0 z-50 mb-2 shadow-xl'>
             <nav
-                className='h-full w-full text-base sm:relative sm:left-auto sm:top-auto sm:flex sm:w-auto sm:flex-row sm:justify-end sm:bg-transparent'>
+                className='h-full my-2 w-full text-base sm:relative sm:left-auto sm:top-auto sm:flex sm:w-auto sm:flex-row sm:justify-end sm:bg-transparent'>
                 <div className='flex justify-end container mx-auto items-center gap-2.5'>
                     <div className='flex gap-1.25 items-center'>
-                        <div className='w-2.5 h-2.5 rounded-full bg-green-500'/>
-                        <p className='text-gray-600 text-base'>{EnvironmentsEnum.devnet}</p>
+                        <div className='w-2.5 h-2.5 mx-2 rounded-full bg-green-500'/>
+                        <p className='text-gray-600 text-base text-xl'>{EnvironmentsEnum.devnet}</p>
                     </div>
 
                     {isLoggedIn ? (
                         <button
                             onClick={handleLogout}
-                            className='inline-block rounded-lg px-4 py-2.5 text-center hover:no-underline my-0 text-gray-600 hover:bg-gray-200 mx-0 text-base'
+                            className='inline-block p-2 text-xl text-gray-600 bg-gray-200 rounded-3xl hover:rounded-xl hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer'
                         >
                             Logout
                         </button>
                     ) : (
                         <button
                             onClick={handleLogin}
-                            className='inline-block rounded-lg px-4 py-2.5 text-center hover:no-underline my-0 text-gray-600 hover:bg-gray-200 mx-0 text-base'
+                            className='inline-block p-2 text-xl text-gray-600 bg-gray-200 rounded-3xl hover:rounded-xl hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer'
                         >
                             Login
                         </button>
@@ -89,7 +89,7 @@ export const Nav = () => {
 
                     <button
                         onClick={handleDummyPage}
-                        className='inline-block rounded-lg px-4 py-2.5 text-center hover:no-underline my-0 text-gray-600 hover:bg-gray-200 mx-0 text-base'
+                        className='inline-block p-2 text-xl text-gray-600 bg-gray-200 rounded-3xl hover:rounded-xl hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer'
                     >
                         Dummy Page
                     </button>

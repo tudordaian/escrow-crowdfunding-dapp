@@ -65,8 +65,8 @@ export const TokenTransferForm = ({ abi }: { abi: any }) => {
         <div className='flex justify-center items-center p-4 '>
             <form onSubmit={handleSubmit}
                   className='flex flex-col p-6 items-center justify-center gap-4 rounded-xl bg-[#f6f8fa] shadow-xl'>
-                <h1 className='text-4xl font-bold text-center my-4 text-gray-500'>Dashboard</h1>
-                <div>Wallet address: {address}</div>
+                <h1 className='text-4xl text-center my-4 text-gray-500 font-ubuntu'>Dashboard</h1>
+                <div className='font-ubuntu'>Wallet address: {address}</div>
                 <ProposedOffer
                     tokens={tokens}
                     offeredToken={offeredToken}
@@ -86,7 +86,7 @@ export const TokenTransferForm = ({ abi }: { abi: any }) => {
                     setDestinationAddress={setDestinationAddress}
                 />
                 <button type="submit"
-                        className='p-2 bg-gray-200 font- text-gray-600 rounded-3xl hover:rounded-xl hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer w-full'>
+                        className='p-2 bg-gray-200 shadow-sm text-xl text-gray-600 rounded-3xl hover:rounded-xl hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer w-full'>
                     Submit offer
                 </button>
             </form>
