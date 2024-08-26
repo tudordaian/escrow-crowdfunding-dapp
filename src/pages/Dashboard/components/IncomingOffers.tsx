@@ -63,7 +63,7 @@ export const IncomingOffers = ({ success, abi }: TxProps) => {
     return (
         <div className='flex justify-center items-center my-4'>
             <div className='flex flex-col py-2 items-center justify-center gap-4 rounded-3xl bg-[#f6f8fa] shadow-xl max-w-'>
-                <h2 className='text-2xl my-2 mx-4'>Incoming Offers</h2>
+                <h2 className='text-2xl text-gray-500 my-2 mx-4'>Incoming Offers</h2>
                 <IncomingOffersTable wantedOffers={wantedOffers} acceptOffer={acceptOffer} getIncomingOffers={getIncomingOffers}/>
             </div>
         </div>

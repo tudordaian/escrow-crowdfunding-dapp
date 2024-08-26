@@ -48,7 +48,7 @@ export const OutgoingOffers = ({ success, abi }: TxProps) => {
     return (
         <div className='flex justify-center items-center my-2'>
             <div className='flex flex-col items-center justify-center rounded-3xl bg-[#f6f8fa] shadow-xl max-w-'>
-                <h2 className='text-2xl my-3 mx-4'>Outgoing Offers</h2>
+                <h2 className='text-2xl text-gray-500 my-3 mx-4'>Outgoing Offers</h2>
                 <OutgoingOffersTable createdOffers={createdOffers} cancelOffer={cancelOffer} getCreatedOffers={getCreatedOffers}/>
             </div>
         </div>
