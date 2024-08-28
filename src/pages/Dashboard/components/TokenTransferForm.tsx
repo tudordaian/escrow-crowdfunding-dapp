@@ -20,8 +20,9 @@ export const TokenTransferForm = ({ abi }: { abi: any }) => {
     const factory = useSmartContractFactory(abi);
 
     const createOffer = async (): Promise<Transaction | null> => {
-        if(!await hasEnoughBalance(address, offeredToken, offeredAmount)) {
-            alert("Not enough balance");
+        const { balance, hasEnough } = await hasEnoughBalance(address, offeredToken, offeredAmount);
+        if (!hasEnough) {
+            alert(`Not enough balance. Your balance is ${balance}`);
             return null;
         }
       let args = [wantedToken, 0, parseAmount(wantedAmount), destinationAddress];
