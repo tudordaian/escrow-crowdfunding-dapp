@@ -97,7 +97,7 @@ export const Nav = () => {
 
                 {notLoggedInMessage && <p className='text-base'>You are not logged in</p>}
             </nav>
-            <div className='absolute left-1/2 transform -translate-x-1/2 text-2xl font-bold text-gray-500'>
+            <div className='absolute left-1/2 transform -translate-x-1/2 text-4xl text-gray-500'>
                 Escrow Dapp
             </div>
         </header>

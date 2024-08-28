@@ -9,8 +9,8 @@ import {TxProps} from "../types";
 import {useGetAccount} from "@multiversx/sdk-dapp/hooks/account/useGetAccount";
 import {sendTransactions} from "@multiversx/sdk-dapp/services";
 import {IncomingOffersTable} from "./IncomingOffersTable.tsx";
-import {useSmartContractFactory} from "../hooks";
-import {useFetchOffers} from "../hooks/useFetchOffers.tsx";
+import {useFetchOffers} from "../hooks";
+import {useSmartContractFactory} from "../../../utils/hooks";
 
 export const IncomingOffers = ({ success, abi }: TxProps) => {
     const {address} = useGetAccount();

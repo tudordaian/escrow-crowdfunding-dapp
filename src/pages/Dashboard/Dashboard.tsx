@@ -3,7 +3,7 @@ import {TokenTransferForm} from "./components/TokenTransferForm.tsx";
 import {OutgoingOffers} from "./components/OutgoingOffers.tsx";
 import {IncomingOffers} from "./components/IncomingOffers.tsx";
 import {useGetActiveTransactionsStatus} from "@multiversx/sdk-dapp/hooks";
-import {useFetchAbi} from "./hooks";
+import {useFetchAbi} from "../../utils/hooks";
 
 export const Dashboard = () => {
     const {success} = useGetActiveTransactionsStatus();

@@ -4,10 +4,12 @@ import {ContractAddressEnum, WalletAddressEnum} from "../../../localConstants/ad
 import {Address, Token, TokenTransfer, Transaction} from "@multiversx/sdk-core/out";
 import {sendTransactions} from "@multiversx/sdk-dapp/services";
 import {parseAmount} from "@multiversx/sdk-dapp/utils";
-import {useFetchTokens, useSmartContractFactory} from "../hooks";
+import {useFetchTokens} from "../hooks";
+import {useSmartContractFactory} from "../../../utils/hooks";
 import {ProposedOffer} from "./ProposedOffer.tsx";
 import {WantedOffer} from "./WantedOffer.tsx";
 import {DestinationAddress} from "./DestinationAddress.tsx";
+import {hasEnoughBalance} from "../../../utils";
 
 export const TokenTransferForm = ({ abi }: { abi: any }) => {
     const {address} = useGetAccount();
@@ -17,7 +19,11 @@ export const TokenTransferForm = ({ abi }: { abi: any }) => {
     const [destinationAddress, setDestinationAddress] = useState<string>(WalletAddressEnum.firstWallet);
     const factory = useSmartContractFactory(abi);
 
-    const createOffer = async (): Promise<Transaction> => {
+    const createOffer = async (): Promise<Transaction | null> => {
+        if(!await hasEnoughBalance(address, offeredToken, offeredAmount)) {
+            alert("Not enough balance");
+            return null;
+        }
       let args = [wantedToken, 0, parseAmount(wantedAmount), destinationAddress];
         return factory.createTransactionForExecute({
             sender: Address.fromBech32(address),
@@ -61,7 +67,6 @@ export const TokenTransferForm = ({ abi }: { abi: any }) => {
     }
 
     return (
-
         <div className='flex justify-center items-center p-4 '>
             <form onSubmit={handleSubmit}
                   className='flex flex-col p-6 items-center justify-center gap-4 rounded-xl bg-[#f6f8fa] shadow-xl'>
