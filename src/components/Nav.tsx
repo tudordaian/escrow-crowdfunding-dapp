@@ -47,14 +47,15 @@ export const Nav = () => {
         );
     };
 
-    const handleDummyPage = () => {
+    const handlePage = (path: string) => {
         if (isLoggedIn) {
             setNotLoggedInMessage(false);
-            navigate('/dummy');
+            navigate(`/${path}`);
         } else {
             setNotLoggedInMessage(true);
         }
     };
+
 
     const handleLogin = () => {
         navigate('/unlock');
@@ -68,37 +69,46 @@ export const Nav = () => {
                 <div className='flex justify-end container mx-auto items-center gap-2.5'>
                     <div className='flex gap-1.25 items-center'>
                         <div className='w-2.5 h-2.5 mx-2 rounded-full bg-green-500'/>
-                        <p className='text-gray-600 text-base text-xl'>{EnvironmentsEnum.devnet}</p>
+                        <p className='text-gray-600 text-xl'>{EnvironmentsEnum.devnet}</p>
                     </div>
 
                     {isLoggedIn ? (
                         <button
                             onClick={handleLogout}
-                            className='inline-block p-2 text-xl text-gray-600 bg-gray-200 rounded-3xl hover:rounded-xl hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer'
+                            className='inline-block p-2 text-xl text-gray-600 bg-gray-200 rounded-3xl hover:rounded-xl hover:text-white hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer'
                         >
                             Logout
                         </button>
                     ) : (
                         <button
                             onClick={handleLogin}
-                            className='inline-block p-2 text-xl text-gray-600 bg-gray-200 rounded-3xl hover:rounded-xl hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer'
+                            className='inline-block p-2 text-xl text-gray-600 bg-gray-200 rounded-3xl hover:rounded-xl hover:text-white hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer'
                         >
                             Login
                         </button>
                     )}
-
-                    <button
-                        onClick={handleDummyPage}
-                        className='inline-block p-2 text-xl text-gray-600 bg-gray-200 rounded-3xl hover:rounded-xl hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer'
-                    >
-                        Dummy Page
-                    </button>
+                    {isLoggedIn && (
+                            <button
+                                onClick={() => handlePage('dashboard')}
+                                className='inline-block p-2 text-xl text-gray-600 bg-gray-200 rounded-3xl hover:rounded-xl hover:text-white hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer'
+                            >
+                                Escrow SC
+                            </button>
+                        )}
+                    {isLoggedIn && (
+                            <button
+                                onClick={() => handlePage('adder')}
+                                className='inline-block p-2 text-xl text-gray-600 bg-gray-200 rounded-3xl hover:rounded-xl hover:text-white hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer'
+                            >
+                                Adder SC
+                            </button>
+                    )}
                 </div>
 
                 {notLoggedInMessage && <p className='text-base'>You are not logged in</p>}
             </nav>
             <div className='absolute left-1/2 transform -translate-x-1/2 text-4xl text-gray-500'>
-                Escrow Dapp
+                Dapp
             </div>
         </header>
     );

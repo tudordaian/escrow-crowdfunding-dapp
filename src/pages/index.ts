@@ -1,4 +1,4 @@
 export * from './Home'
 export * from './Dashboard'
 export * from './Unlock'
-export * from './Dummy'
+export * from './Adder'

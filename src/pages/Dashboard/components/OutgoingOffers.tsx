@@ -6,9 +6,9 @@ import {ContractAddressEnum} from "../../../localConstants/addresses";
 import {sendTransactions} from "@multiversx/sdk-dapp/services";
 import {useGetAccount} from "@multiversx/sdk-dapp/hooks/account/useGetAccount";
 import {OutgoingOffersTable} from "./OutgoingOffersTable.tsx";
-import {useSmartContractFactory} from "../hooks";
-import {useFetchOffers} from "../hooks/useFetchOffers.tsx";
+import {useFetchOffers} from "../hooks";
 import {TxProps} from "../types";
+import {useSmartContractFactory} from "../../../utils/hooks";
 
 export const OutgoingOffers = ({ success, abi }: TxProps) => {
     const {address} = useGetAccount();

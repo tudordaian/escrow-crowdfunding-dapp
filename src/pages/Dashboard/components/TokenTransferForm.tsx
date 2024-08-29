@@ -2,14 +2,13 @@ import {FormEvent, useState} from 'react';
 import {useGetAccount} from '@multiversx/sdk-dapp/hooks'
 import {ContractAddressEnum, WalletAddressEnum} from "../../../localConstants/addresses";
 import {Address, Token, TokenTransfer, Transaction} from "@multiversx/sdk-core/out";
-import {sendTransactions} from "@multiversx/sdk-dapp/services";
 import {parseAmount} from "@multiversx/sdk-dapp/utils";
 import {useFetchTokens} from "../hooks";
 import {useSmartContractFactory} from "../../../utils/hooks";
 import {ProposedOffer} from "./ProposedOffer.tsx";
 import {WantedOffer} from "./WantedOffer.tsx";
 import {DestinationAddress} from "./DestinationAddress.tsx";
-import {hasEnoughBalance} from "../../../utils";
+import {hasEnoughBalance, sendTx} from "../../../utils";
 
 export const TokenTransferForm = ({ abi }: { abi: any }) => {
     const {address} = useGetAccount();
@@ -41,27 +40,11 @@ export const TokenTransferForm = ({ abi }: { abi: any }) => {
         });
     };
 
-    const sendOffer = async (tx: Transaction) => {
-        if (!address || !tx) {
-            console.error("Address or transaction not found");
-            return;
-        }
-        await sendTransactions({
-            transactions: [tx],
-            transactionsDisplayInfo: {
-                processingMessage: "Processing transaction",
-                errorMessage: "An error has occured",
-                successMessage: "Transaction successful",
-            },
-            signWithoutSending: false,
-        });
-    };
-
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         const tx = await createOffer();
         if (tx) {
-            await sendOffer(tx);
+            await sendTx(tx, address);
         } else {
             console.error("Failed to create transaction");
         }
@@ -71,7 +54,7 @@ export const TokenTransferForm = ({ abi }: { abi: any }) => {
         <div className='flex justify-center items-center p-4 '>
             <form onSubmit={handleSubmit}
                   className='flex flex-col p-6 items-center justify-center gap-4 rounded-xl bg-[#f6f8fa] shadow-xl'>
-                <h1 className='text-4xl text-center my-4 text-gray-500 font-ubuntu'>Dashboard</h1>
+                <h1 className='text-4xl text-center my-4 text-gray-500 font-ubuntu'>Escrow SC</h1>
                 <div className='font-ubuntu'>Wallet address: {address}</div>
                 <ProposedOffer
                     tokens={tokens}
@@ -92,7 +75,7 @@ export const TokenTransferForm = ({ abi }: { abi: any }) => {
                     setDestinationAddress={setDestinationAddress}
                 />
                 <button type="submit"
-                        className='p-2 bg-gray-200 shadow-sm text-xl text-gray-600 rounded-3xl hover:rounded-xl hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer w-full'>
+                        className='p-2 bg-gray-200 shadow-sm text-xl text-gray-600 rounded-3xl hover:rounded-xl hover:bg-gray-300 hover:text-white transition-all duration-300 ease-in-out cursor-pointer w-full'>
                     Submit offer
                 </button>
             </form>
