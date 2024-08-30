@@ -103,12 +103,20 @@ export const Nav = () => {
                                 Adder SC
                             </button>
                     )}
+                    {isLoggedIn && (
+                        <button
+                            onClick={() => handlePage('crowdfunding')}
+                            className='inline-block p-2 text-xl text-gray-600 bg-gray-200 rounded-3xl hover:rounded-xl hover:text-white hover:bg-gray-300 transition-all duration-300 ease-in-out cursor-pointer'
+                        >
+                            Crowdfunding SC
+                        </button>
+                    )}
                 </div>
 
                 {notLoggedInMessage && <p className='text-base'>You are not logged in</p>}
             </nav>
             <div className='absolute left-1/2 transform -translate-x-1/2 text-4xl text-gray-500'>
-                Dapp
+                SC Dapp
             </div>
         </header>
     );

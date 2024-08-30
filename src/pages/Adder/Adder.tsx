@@ -71,7 +71,7 @@ export const Adder = () => {
     return (
         <AuthRedirectWrapper>
             <div className='flex justify-center items-center p-4'>
-                <div className='flex flex-col p-6 items-center justify-center gap-4 rounded-xl bg-[#f6f8fa]'>
+                <div className='flex flex-col p-6 items-center justify-center gap-4 rounded-xl bg-[#f6f8fa] shadow-2xl'>
                     <div className='text-4xl text-center my-4 text-gray-500 font-ubuntu'>Adder SC</div>
                     <div>
                         <label htmlFor="addInput" className='text-2xl pr-2 text-gray-500'>Amount:</label>
