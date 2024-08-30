@@ -1,5 +1,5 @@
 import {AuthRedirectWrapper} from "../../wrappers/AuthRedirectWarapper";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {
     Address,
     Token,
@@ -23,6 +23,7 @@ export const Crowdfunding = () => {
     const { tokens, offeredToken, setOfferedToken } = useFetchTokens(address);
     const {success} = useGetActiveTransactionsStatus();
     const [amount, setAmount] = useState('');
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
     const { data: scStatus, fetchStatus: fetchScStatus } = useFetchStatus(abi, 'status');
     const { data: scTokenId, fetchTokenId: fetchScTokenId } = useFetchTokenId(abi, 'getCrowdfundingTokenIdentifier');
@@ -31,11 +32,13 @@ export const Crowdfunding = () => {
     const { data: scYourDeposit, fetchData: fetchScYourDeposit } = useFetchYourDeposit(abi, 'getDeposit', address);
 
     const refreshStats = async () => {
-        await fetchScStatus();
-        await fetchScTokenId();
-        await fetchScTarget();
-        await fetchScCurrentSum();
-        await fetchScYourDeposit();
+        await Promise.all([
+            fetchScStatus(),
+            fetchScTokenId(),
+            fetchScTarget(),
+            fetchScCurrentSum(),
+            fetchScYourDeposit()
+        ]);
     }
 
     useEffect(() => {
@@ -45,7 +48,12 @@ export const Crowdfunding = () => {
     }, [success]);
 
     useEffect(() => {
-        refreshStats();
+        intervalRef.current = setInterval(refreshStats, 3000);
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+            }
+        };
     }, [abi]);
 
     const createTx = async (func: string): Promise<Transaction | null> => {
